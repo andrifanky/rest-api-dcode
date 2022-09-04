@@ -74,10 +74,3 @@ api.add_resource(ContohResource, "/api", methods=["GET","POST"])
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)
-
-<<<<<<< HEAD
-    #coba push 2
-=======
-    #coba push 2
-    
->>>>>>> 2c0b57791e16982d585e98d3a5a4a3b2d5aa189b
