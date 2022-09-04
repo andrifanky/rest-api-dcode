@@ -1,5 +1,5 @@
-# import library
 from crypt import methods
+import resource
 from sqlite3 import DatabaseError
 from urllib import response
 from flask import Flask, request
@@ -55,7 +55,7 @@ class ContohResource(Resource):
         query = DatabaseModel.query.all()
 
         # melakukan iterasi pada DAtabaseModel
-        output = [{"nama" : data.nama, "umur" : data.umur, "alamat" : data.alamat}for data in query]
+        output = [{"id": data.id,"nama" : data.nama, "umur" : data.umur, "alamat" : data.alamat}for data in query]
         response = {"code" : 200, "Query" : "Query Sukses", "data" : output}
         return output, 200
     
@@ -69,8 +69,54 @@ class ContohResource(Resource):
         response = {"msg": "Data berhasil dimasukkan", "code" : 200}
         return response, 200
 
+    def delete(self):
+        query = DatabaseModel.query.all()
+        for data in query:
+            db.session.delete(data)
+            db.session.commit()
+
+        response = {"msg" : "Succesfull delete All data", "code" : 200}
+        return response
+
+# membuat class update
+class UpdateResource(Resource):
+
+
+    def put(self, id):
+        query = DatabaseModel.query.get(id)
+
+        # form edit data
+        editNama = request.form["nama"]
+        editUmur = request.form["umur"]
+        editAlamat = request.form["alamat"]
+
+        # replace data
+        query.nama = editNama
+        query.umur = editUmur
+        query.alamat = editAlamat
+
+        db.session.commit()
+
+        response = {"msg" : "Succesfull update data", "code" : 200}
+
+        return response, 200
+
+    #delete by id
+    def delete(self, id):
+        queryData = DatabaseModel.query.get(id)
+
+
+        # call method delete
+        db.session.delete(queryData)
+        db.session.commit()
+
+        response = { "msg" : "succesfull delete data", "code" : 200}
+        return response
+
+
 # setup resourcenya
-api.add_resource(ContohResource, "/api", methods=["GET","POST"])
+api.add_resource(ContohResource, "/api", methods=["GET","POST", "DELETE"])
+api.add_resource(UpdateResource, "/api/<id>", methods=["PUT", "DELETE"])
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)
