@@ -14,7 +14,7 @@ Fiture :
 3. DELETE : You can delete data by id [https://rest-api-dcode.herokuapp.com/api/<id>] and all data [https://rest-api-dcode.herokuapp.com/api.]
 
 Our team 
-- Andri Fanky
+- Andri Fanky Kurniawan
 - A Darul Ilmi
 - Intan Charolina
-- Fauzi
+- Fauzi Tri Atmaja
