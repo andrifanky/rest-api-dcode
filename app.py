@@ -1,7 +1,5 @@
-from crypt import methods
-import resource
-from sqlite3 import DatabaseError
-from urllib import response
+# from sqlite3 import DatabaseError
+# from urllib import response 
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
@@ -45,7 +43,7 @@ class DatabaseModel(db.Model):
 db.create_all()
 
 # inisiasi variabel kosong bertipe dictionary
-identitas = {} # variable global, dictionary = json
+# identitas = {} # variable global, dictionary = json
 
 # membuat class Resource
 class ContohResource(Resource):
@@ -117,6 +115,7 @@ class UpdateResource(Resource):
 # setup resourcenya
 api.add_resource(ContohResource, "/api", methods=["GET","POST", "DELETE"])
 api.add_resource(UpdateResource, "/api/<id>", methods=["PUT", "DELETE"])
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)
