@@ -39,7 +39,7 @@ class DatabaseModel(db.Model):
         except:
             return False
 
-# mencreate database
+# create database
 db.create_all()
 
 # inisiasi variabel kosong bertipe dictionary
@@ -52,7 +52,7 @@ class ContohResource(Resource):
         # menampilkan database
         query = DatabaseModel.query.all()
 
-        # melakukan iterasi pada DAtabaseModel
+        # melakukan iterasi pada DatabaseModel
         output = [{"id": data.id,"nama" : data.nama, "umur" : data.umur, "alamat" : data.alamat}for data in query]
         response = {"code" : 200, "Query" : "Query Sukses", "data" : output}
         return output, 200
@@ -64,7 +64,7 @@ class ContohResource(Resource):
         
         model = DatabaseModel(nama = dataNama, umur = dataUmur, alamat = dataAlamat)
         model.save()
-        response = {"msg": "Data berhasil dimasukkan", "code" : 200}
+        response = {"msg": "Succesful create data", "code" : 200}
         return response, 200
 
     def delete(self):
@@ -73,7 +73,7 @@ class ContohResource(Resource):
             db.session.delete(data)
             db.session.commit()
 
-        response = {"msg" : "Succesfull delete All data", "code" : 200}
+        response = {"msg" : "Succesful delete all data", "code" : 200}
         return response
 
 # membuat class update
@@ -95,7 +95,7 @@ class UpdateResource(Resource):
 
         db.session.commit()
 
-        response = {"msg" : "Succesfull update data", "code" : 200}
+        response = {"msg" : "Succesful update data", "code" : 200}
 
         return response, 200
 
@@ -108,7 +108,7 @@ class UpdateResource(Resource):
         db.session.delete(queryData)
         db.session.commit()
 
-        response = { "msg" : "succesfull delete data", "code" : 200}
+        response = { "msg" : "Succesful delete data", "code" : 200}
         return response
 
 
