@@ -55,7 +55,7 @@ class HomePage(Resource):
 
 api.add_resource(LoginUser, "/api/login", methods=["POST"])
 api.add_resource(Dashboard, "/api/dashboard", methods=["GET"])
-api.add_resource(HomePage, "/api", methods=["GET"])
+api.add_resource(HomePage, "/api/token", methods=["GET"])
 
 if __name__ == '__main__':
     app.run(debug=True)
